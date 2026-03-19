@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dushmitha Chamod | Creative Portfolio</title>
+    <style>
+      :root {
+        --bg: #060816;
+        --bg-2: #0b1023;
+        --panel: rgba(11, 16, 35, 0.78);
+        --panel-strong: rgba(17, 24, 39, 0.92);
+        --text: #f8fafc;
+        --muted: #b6c2d2;
+        --accent: #7c3aed;
+        --accent-2: #22d3ee;
+        --accent-3: #f59e0b;
+        --border: rgba(255, 255, 255, 0.1);
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        --max-width: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        color: var(--text);
+        line-height: 1.6;
+        background:
+          radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.22), transparent 22%),
+          radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.2), transparent 20%),
+          radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.12), transparent 20%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.18;
+        z-index: -1;
+      }
+
+      body::before {
+        background: var(--accent);
+        top: -40px;
+        left: -80px;
+      }
+
+      body::after {
+        background: var(--accent-2);
+        right: -80px;
+        bottom: 10%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(92%, var(--max-width));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(18px);
+        background: rgba(6, 8, 22, 0.7);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .logo span {
+        color: var(--accent-2);
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        transition: 0.25s ease;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        transform: scaleX(1);
+      }
+
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 0.65rem 0.95rem;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+
+      section {
+        padding: 5.5rem 0;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-2);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.78rem;
+        margin-bottom: 1rem;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: var(--accent-2);
+      }
+
+      .hero h1 {
+        font-size: clamp(2.6rem, 7vw, 5.6rem);
+        line-height: 1.02;
+        margin-bottom: 1.2rem;
+        max-width: 760px;
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, var(--accent-2), var(--accent-3), #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p,
+      .section-text,
+      .card p,
+      .contact-line,
+      .stat-label,
+      .footer-text {
+        color: var(--muted);
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+        max-width: 640px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.95rem 1.35rem;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: 0.25s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        color: white;
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.28);
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 560px;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(8px);
+      }
+
+      .blob.one {
+        width: 140px;
+        height: 140px;
+        top: 20px;
+        left: 10px;
+        background: linear-gradient(135deg, rgba(34, 211, 238, 0.45), rgba(124, 58, 237, 0.2));
+      }
+
+      .blob.two {
+        width: 180px;
+        height: 180px;
+        right: 0;
+        bottom: 70px;
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.35), rgba(124, 58, 237, 0.18));
+      }
+
+      .hero-card,
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
+      }
+
+      .hero-card {
+        position: absolute;
+        border-radius: 32px;
+        overflow: hidden;
+      }
+
+      .hero-photo {
+        inset: 40px 60px 100px 40px;
+      }
+
+      .hero-photo img,
+      .gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-photo-placeholder {
+        width: 100%;
+        height: 100%;
+        background:
+          linear-gradient(rgba(6, 8, 22, 0.18), rgba(6, 8, 22, 0.4)),
+          url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80') center/cover;
+      }
+
+      .floating-card {
+        border-radius: 24px;
+        padding: 1.2rem;
+      }
+
+      .intro-badge {
+        position: absolute;
+        right: 10px;
+        top: 30px;
+        width: 220px;
+      }
+
+      .intro-badge h3,
+      .spotlight-card h3,
+      .project-card h3,
+      .skill-card h3,
+      .timeline-card h3,
+      .contact-card h3 {
+        margin-bottom: 0.6rem;
+      }
+
+      .mini-stats {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+
+      .stat {
+        padding: 0.9rem;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .stat-value {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-title {
+        font-size: 2.1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .about-layout,
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 1.6rem;
+      }
+
+      .card {
+        border-radius: 28px;
+        padding: 1.5rem;
+      }
+
+      .spotlight-card {
+        min-height: 100%;
+        background:
+          linear-gradient(180deg, rgba(124, 58, 237, 0.14), rgba(34, 211, 238, 0.06)),
+          var(--panel-strong);
+      }
+
+      .tag-list,
+      .contact-list,
+      .project-list,
+      .timeline-list {
+        list-style: none;
+      }
+
+      .tag-list {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-top: 1.2rem;
+      }
+
+      .tag-list li {
+        padding: 0.7rem 1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: #e5eefc;
+      }
+
+      .skills-grid,
+      .projects-grid,
+      .gallery-grid,
+      .timeline-grid {
+        display: grid;
+        gap: 1.4rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1.1fr 0.9fr 0.9fr;
+      }
+
+      .timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .skill-card,
+      .project-card,
+      .gallery-card,
+      .timeline-card,
+      .contact-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-card::before,
+      .project-card::before,
+      .contact-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 60%);
+        pointer-events: none;
+      }
+
+      .skill-icon,
+      .project-number {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.24), rgba(34, 211, 238, 0.18));
+        border: 1px solid var(--border);
+        font-weight: 700;
+      }
+
+      .project-list,
+      .timeline-list {
+        display: grid;
+        gap: 0.5rem;
+        margin-top: 0.9rem;
+        color: var(--muted);
+      }
+
+      .project-list li::before,
+      .timeline-list li::before {
+        content: '• ';
+        color: var(--accent-2);
+      }
+
+      .gallery-card {
+        min-height: 230px;
+      }
+
+      .gallery-card.large {
+        min-height: 480px;
+      }
+
+      .gallery-card img {
+        height: 100%;
+        filter: brightness(0.82);
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 1rem;
+        background: linear-gradient(180deg, transparent, rgba(3, 7, 18, 0.82));
+      }
+
+      .contact-card {
+        background: linear-gradient(145deg, rgba(124, 58, 237, 0.14), rgba(34, 211, 238, 0.08));
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1rem;
+      }
+
+      .contact-line {
+        padding: 0.95rem 1rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.5rem 0 2.5rem;
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .about-layout,
+        .contact-layout,
+        .skills-grid,
+        .projects-grid,
+        .gallery-grid,
+        .timeline-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: 620px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .menu-toggle {
+          display: inline-block;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 72px;
+          right: 4%;
+          width: 220px;
+          flex-direction: column;
+          padding: 1rem;
+          border-radius: 16px;
+          background: #0b1023;
+          border: 1px solid var(--border);
+          display: none;
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .hero-photo {
+          inset: 70px 16px 135px 16px;
+        }
+
+        .intro-badge {
+          right: 8px;
+          top: 10px;
+          width: 180px;
+        }
+
+        .mini-stats {
+          left: 8px;
+          right: 8px;
+          width: auto;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <a href="#home" class="logo">DUSHMITHA <span>CHAMOD</span></a>
+        <button class="menu-toggle" id="menuToggle">Menu</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <p class="eyebrow">Creative Student Portfolio</p>
+            <h1>Turning <span class="gradient-text">curiosity into code</span> and building my future in software development.</h1>
+            <p>
+              I'm Dushmitha Chamod, a Computer Science student at Riga Nordic University with growing skills in C, C++, and Python. I enjoy creating, learning, and exploring programming through practical work, mini projects, and continuous improvement.
+            </p>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary">Explore My Work</a>
+              <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="blob one"></div>
+            <div class="blob two"></div>
+
+            <div class="hero-card hero-photo">
+              <div class="hero-photo-placeholder"></div>
+            </div>
+
+            <div class="hero-card floating-card intro-badge">
+              <h3>About Me</h3>
+              <p>Student focused on programming, logic, and consistent growth through hands-on learning.</p>
+            </div>
+
+            <div class="hero-card floating-card mini-stats">
+              <div class="stats-grid">
+                <div class="stat">
+                  <div class="stat-value">3</div>
+                  <div class="stat-label">Languages</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">CS</div>
+                  <div class="stat-label">Degree Path</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">2023+</div>
+                  <div class="stat-label">Practice Journey</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">∞</div>
+                  <div class="stat-label">Learning Mindset</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <h2 class="section-title">About Me</h2>
+              <p class="section-text">A more personal and visually attractive introduction for your portfolio website.</p>
+            </div>
+          </div>
+
+          <div class="about-layout">
+            <div class="card spotlight-card reveal">
+              <h3>My Direction</h3>
+              <p>
+                I am building a strong base in computer science and software development while improving my practical coding ability. My focus is on understanding concepts deeply, solving problems clearly, and turning learning into real progress.
+              </p>
+              <ul class="tag-list">
+                <li>Computer Science</li>
+                <li>Problem Solving</li>
+                <li>Programming Practice</li>
+                <li>Continuous Learning</li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h3>Who I Am</h3>
+              <p>
+                I am a motivated student who enjoys learning through action. From writing small programs to improving logic and debugging skills, I like building confidence one project at a time.
+              </p>
+              <br />
+              <p>
+                I am especially interested in software development opportunities where I can grow, contribute, and keep improving as a developer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <h2 class="section-title">Skills</h2>
+              <p class="section-text">Presented in a cleaner and more modern card-based style.</p>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <article class="card skill-card reveal">
+              <div class="skill-icon">C</div>
+              <h3>Programming Languages</h3>
+              <p>Intermediate knowledge in core languages used for problem solving and structured programming.</p>
+              <ul class="project-list">
+                <li>C</li>
+                <li>C++</li>
+                <li>Python</li>
+              </ul>
+            </article>
+
+            <article class="card skill-card reveal">
+              <div class="skill-icon">01</div>
+              <h3>Technical Strengths</h3>
+              <p>Skills developed through study, coding practice, and hands-on mini project work.</p>
+              <ul class="project-list">
+                <li>Logical thinking</li>
+                <li>Debugging</li>
+                <li>Problem solving</li>
+                <li>Basic algorithm knowledge</li>
+              </ul>
+            </article>
+
+            <article class="card skill-card reveal">
+              <div class="skill-icon">02</div>
+              <h3>Professional Qualities</h3>
+              <p>Important personal strengths that support learning, teamwork, and long-term growth.</p>
+              <ul class="project-list">
+                <li>Time management</li>
+                <li>Communication</li>
+                <li>Adaptability</li>
+                <li>Attention to detail</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <h2 class="section-title">Projects & Practice</h2>
+              <p class="section-text">Your learning work can still look impressive when shown in the right way.</p>
+            </div>
+          </div>
+
+          <div class="projects-grid">
+            <article class="card project-card reveal">
+              <div class="project-number">01</div>
+              <h3>C Programming Practice</h3>
+              <p>Built and tested small console programs to improve core syntax knowledge, logic building, and debugging ability.</p>
+              <ul class="project-list">
+                <li>Focused on clean code structure</li>
+                <li>Improved logical thinking</li>
+                <li>Practiced debugging regularly</li>
+              </ul>
+            </article>
+
+            <article class="card project-card reveal">
+              <div class="project-number">02</div>
+              <h3>C++ Learning Projects</h3>
+              <p>Used C++ exercises and mini tasks to strengthen understanding of object-oriented thinking and structured programming.</p>
+              <ul class="project-list">
+                <li>Mini project development</li>
+                <li>Coursework-based practice</li>
+                <li>Confidence in coding workflow</li>
+              </ul>
+            </article>
+
+            <article class="card project-card reveal">
+              <div class="project-number">03</div>
+              <h3>Python Problem Solving</h3>
+              <p>Worked on simple Python programs and exercises to build consistency and improve overall programming confidence.</p>
+              <ul class="project-list">
+                <li>Quick scripting practice</li>
+                <li>Self-learning exercises</li>
+                <li>Better coding fluency</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <h2 class="section-title">Visual Gallery</h2>
+              <p class="section-text">This section makes the website more attractive. You can replace these images with your own photo, coding desk, certificates, or project screenshots.</p>
+            </div>
+          </div>
+
+          <div class="gallery-grid">
+            <article class="card gallery-card large reveal">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Laptop workspace" />
+              <div class="gallery-overlay">
+                <h3>My Learning Space</h3>
+                <p>Replace this with your own setup image.</p>
+              </div>
+            </article>
+
+            <article class="card gallery-card reveal">
+              <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80" alt="Programming setup" />
+              <div class="gallery-overlay">
+                <h3>Code & Focus</h3>
+              </div>
+            </article>
+
+            <article class="card gallery-card reveal">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Software development" />
+              <div class="gallery-overlay">
+                <h3>Creative Building</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <h2 class="section-title">Journey</h2>
+              <p class="section-text">This timeline style makes your CV feel more like a real story.</p>
+            </div>
+          </div>
+
+          <div class="timeline-grid">
+            <article class="card timeline-card reveal">
+              <h3>Education</h3>
+              <ul class="timeline-list">
+                <li>BSc in Computer Science</li>
+                <li>Riga Nordic University</li>
+                <li>Building academic and technical foundations</li>
+              </ul>
+            </article>
+
+            <article class="card timeline-card reveal">
+              <h3>Current Focus</h3>
+              <ul class="timeline-list">
+                <li>Programming practice in C, C++, and Python</li>
+                <li>Improving debugging and logic skills</li>
+                <li>Preparing for internships and software roles</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <h2 class="section-title">Contact</h2>
+              <p class="section-text">A cleaner call-to-action section for recruiters, collaborators, and internship opportunities.</p>
+            </div>
+          </div>
+
+          <div class="contact-layout">
+            <div class="card contact-card reveal">
+              <h3>Let's Work Together</h3>
+              <p>
+                I am open to internships, junior opportunities, collaborations, and learning-focused projects where I can continue growing in software development.
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h3>Reach Me</h3>
+              <ul class="contact-list">
+                <li><a class="contact-line" href="mailto:dushmitha4u@gmail.com">dushmitha4u@gmail.com</a></li>
+                <li><a class="contact-line" href="tel:+37120169890">+371 20169890</a></li>
+                <li><div class="contact-line">Riga, Latvia</div></li>
+                <li><a class="contact-line" href="#">Add your LinkedIn link here</a></li>
+                <li><a class="contact-line" href="#">Add your GitHub link here</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-row">
+        <p class="footer-text">© <span id="year"></span> Dushmitha Chamod</p>
+        <p class="footer-text">Creative portfolio website</p>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const navAnchors = document.querySelectorAll('.nav-links a');
+      const revealItems = document.querySelectorAll('.reveal');
+      const sections = document.querySelectorAll('section[id]');
+
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+
+      navAnchors.forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+
+      const revealOnScroll = () => {
+        revealItems.forEach((item) => {
+          const top = item.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (top < windowHeight - 70) {
+            item.classList.add('show');
+          }
+        });
+      };
+
+      const setActiveLink = () => {
+        let current = '';
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 140;
+          const sectionHeight = section.offsetHeight;
+          if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navAnchors.forEach((link) => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      };
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      window.addEventListener('scroll', () => {
+        revealOnScroll();
+        setActiveLink();
+      });
+
+      revealOnScroll();
+      setActiveLink();
+    </script>
+  </body>
+</html>
