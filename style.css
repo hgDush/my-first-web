@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+:root {
+  --bg: #0d0d0d;
+  --surface: #161616;
+  --card: #1e1e1e;
+  --border: #2a2a2a;
+  --accent: #00e5ff;
+  --accent2: #ff6b35;
+  --text: #e8e8e8;
+  --muted: #888;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: center;
+}
+nav button {
+  background: none; border: none; color: var(--muted);
+  font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700;
+  padding: 1rem 2rem; cursor: pointer; letter-spacing: .05em;
+  border-bottom: 2px solid transparent; transition: all .2s;
+}
+nav button:hover, nav button.active {
+  color: var(--accent); border-bottom-color: var(--accent);
+}
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── PROFILE ── */
+#profile-page {
+  max-width: 780px; margin: 0 auto; padding: 4rem 2rem;
+  animation: fadeUp .5s ease;
+}
+.profile-hero {
+  display: flex; gap: 2.5rem; align-items: center;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem;
+}
+.avatar {
+  width: 110px; height: 110px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.8rem; font-weight: 800; color: #000;
+  flex-shrink: 0; letter-spacing: -2px;
+}
+.profile-info h1 { font-size: 2rem; font-weight: 800; }
+.profile-info .tag {
+  display: inline-block; background: var(--accent); color: #000;
+  font-size: .75rem; font-weight: 700; padding: .2rem .7rem;
+  border-radius: 99px; margin-top: .4rem; letter-spacing: .08em;
+}
+.profile-info p { color: var(--muted); margin-top: .8rem; line-height: 1.6; }
+.profile-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.info-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.2rem 1.5rem;
+}
+.info-card .label {
+  font-size: .75rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .1em; margin-bottom: .3rem;
+}
+.info-card .value { font-size: 1rem; font-weight: 700; }
+
+/* ── PROFILE EDIT FORM ── */
+.edit-form {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem;
+}
+.edit-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+@media (max-width: 600px) { .edit-grid { grid-template-columns: 1fr; } }
+
+/* ── TASKS PAGE ── */
+#tasks-page { padding: 2rem; max-width: 1100px; margin: 0 auto; animation: fadeUp .5s ease; }
+#tasks-page h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; }
+
+.task-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: .8rem; margin-bottom: 3rem;
+}
+.task-btn {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); font-family: 'Syne', sans-serif;
+  font-size: .82rem; font-weight: 700; padding: .75rem 1rem;
+  border-radius: var(--radius); cursor: pointer; text-align: left;
+  transition: all .18s; display: flex; align-items: center; gap: .6rem;
+}
+.task-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.task-btn .num {
+  background: var(--border); color: var(--muted);
+  font-family: 'JetBrains Mono', monospace; font-size: .75rem;
+  padding: .15rem .45rem; border-radius: 4px; flex-shrink: 0;
+}
+.task-btn:hover .num { background: var(--accent); color: #000; }
+
+/* ── TASK SECTIONS ── */
+.task-section {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; margin-bottom: 1.5rem;
+  scroll-margin-top: 80px; overflow: hidden;
+}
+.task-header {
+  padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 1rem;
+}
+.task-num {
+  background: var(--accent); color: #000;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: .85rem; padding: .2rem .6rem; border-radius: 6px; flex-shrink: 0;
+}
+.task-desc { font-size: 1rem; font-weight: 700; }
+.task-body { padding: 1.5rem; }
+
+/* ── FORM CONTROLS ── */
+input[type="text"], input[type="number"], input[type="password"],
+input[type="email"], select, textarea {
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); font-family: 'JetBrains Mono', monospace;
+  font-size: .9rem; padding: .55rem .9rem;
+  border-radius: 8px; outline: none; transition: border-color .2s; width: 100%;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+
+.row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin-bottom: .8rem; }
+.row input, .row select { flex: 1; min-width: 140px; }
+
+.btn {
+  background: var(--accent); color: #000;
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: .85rem; padding: .55rem 1.3rem;
+  border: none; border-radius: 8px; cursor: pointer; transition: opacity .15s;
+  white-space: nowrap;
+}
+.btn:hover { opacity: .85; }
+.btn.sec   { background: var(--border); color: var(--text); }
+.btn.danger{ background: #c0392b; color: #fff; }
+
+.output {
+  margin-top: .9rem; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: .8rem 1rem;
+  font-family: 'JetBrains Mono', monospace; font-size: .88rem;
+  min-height: 2.5rem; color: var(--accent); word-break: break-all;
+}
+
+label { font-size: .85rem; color: var(--muted); display: block; margin-bottom: .3rem; }
+.field { margin-bottom: .9rem; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { border: 1px solid var(--border); padding: .5rem .8rem; text-align: left; font-size: .88rem; }
+th { background: var(--border); color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+
+/* ── TASK 29 – Timer ── */
+#countdown-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3rem; font-weight: 700; color: var(--accent);
+  text-align: center; margin: 1rem 0;
+}
+
+/* ── TASK 30 – Hover Button ── */
+#hover-btn {
+  padding: 1rem 2.5rem; border: 2px solid var(--accent);
+  background: transparent; color: var(--accent);
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1rem; border-radius: 10px; cursor: pointer; transition: all .25s;
+}
+#hover-btn:hover {
+  background: var(--accent2); border-color: var(--accent2);
+  color: #fff; transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 0 24px var(--accent2);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
